@@ -24,7 +24,6 @@ class Graph(object):
 
     def is_connected(self, node1, node2):
         """ Is node1 directly connected to node2 """
-
         return node1 in self._graph and node2 in self._graph[node1]
     
     def get_nodes(self):

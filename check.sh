@@ -18,6 +18,8 @@ function run_backtracking() {
     local t
     t=$( TIMEFORMAT=%R; time ( make -s run_backtracking CTG=${ctg} TEST=${i} 2>/dev/null 1>/dev/null ) 2>&1 ) || return $?
     bkt_time+=( $( printf "%.3f" $t ) )
+    bkt_sum=$(printf "%.3f" $(IFS=+; echo "${bkt_time[*]}" | bc))
+    echo "TIME For test: ${bkt_sum}s"
 }
 
 function run_reduction() {
@@ -27,6 +29,8 @@ function run_reduction() {
     t2=$( TIMEFORMAT=%R; time ( python3 sat_solver.py tests/aux/${ctg}/test${i}.aux > tests/out/${ctg}/test${i}.out ) 2>&1 ) || return $?
     local t=$( echo "$t1 + $t2" | bc )
     rdc_time+=( $( printf "%.3f" $t ) )
+    rdc_sum=$(printf "%.3f" $(IFS=+; echo "${rdc_time[*]}" | bc))
+    echo "Reduction TIME: ${rdc_sum}s"
 }
 
 function run_tests() {

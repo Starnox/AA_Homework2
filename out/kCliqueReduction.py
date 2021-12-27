@@ -30,7 +30,6 @@ if __name__ == '__main__':
         ## first rule 
         ## Every node in the clique should have a vertex
         ## O(k * |V|) = O(n^2) reduction complexity -> polynomial
-
         
         for i in range(1,k+1):
             resultSAT = ''.join((resultSAT,'('));
@@ -38,6 +37,8 @@ if __name__ == '__main__':
                 resultSAT = ''.join((resultSAT, 'x', str(i), str(v), ' V '));
             resultSAT = resultSAT[:-3];
             resultSAT = ''.join((resultSAT, ') ^ '));
+
+
         ## second rule
         ## Every position in the clique should be occupied by unique vertexes
         ## O(k^2 * |V|) = O(n^3) reduction complexity -> polynomial
@@ -52,8 +53,6 @@ if __name__ == '__main__':
         ## For every edge in the graph that doesn't exist we should not have in our clique
         ## both the two vertexes that describe that edge
         ## O(|V|^2 * k^2) = O(n^4) reduction complexity -> polynomial
-        
-
         
         for v in range(1, n+1):
             for u in range(1,n+1):
